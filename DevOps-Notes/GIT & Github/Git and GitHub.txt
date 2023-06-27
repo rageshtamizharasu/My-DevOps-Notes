@@ -1,34 +1,34 @@
 
-Setup for project: 
+Setup for the project: 
 
-$ git init 														: Create a local repo to initialise the current directory as a repo 
-$ git config --global user.name "Ragesh" 						: user name 
-$ git config --global user. email "Ragesh@yourcloud.com” 		: user e-mail
-$ git config –list												: List of users meta data 		
-$ git remote add <alias> <url>									: Add a remote repo
-$ git remote													: View all remote connections. Add-v flag to view URLS 
-$ git clone <url>												: Download a remote repo
+$ git init 														                                      : Create a local repo to initialise the current directory as a repo 
+$ git config --global user.name "Ragesh" 						                        : user name 
+$ git config --global user. email "Ragesh@yourcloud.com” 		                : user e-mail
+$ git config –list												                                  : List of users metadata 		
+$ git remote add <alias> <URL>									                            : Add a remote repo
+$ git remote													                                      : View all remote connections. Add-v flag to view URLS 
+$ git clone <URL>												                                    : Download a remote repo
 
 
 
 Working on project 		
 
-$ git add														: Add a file to staging 
-$ git add.														: Stage all the files from the directory
-$ git commit – m												: Commit all staged file to local repo
-$ git commit – am												: Add all changes made to tracked files & commit
-$ git push														: Upload local repo into Remote repo
-$ git pull														: Fetch the remote repo's Copy of the current branch,then merge 
-$ git status													: List new or modified files not yet committed, check state of work
-$ git log – oneline												: List commit history, with oneline 
-$ git branch <name>												: Create a new branch
-$ git checkout <branch>											: Switch to a branch 
-$ git merge														: Used to merge the branches FB to master
-$ git rebase													: Used to integrate changes from one branch onto another 
-$ git fetch														: Updates your local repo with all of the latest changes from a remote 
-$ git stash														: Temporarily save in working directory
-$ git stash pop													: Re-apply temporarily save work into staging 
-$ git cherry-pick												: re-committing from a branch to the target branch 
+$ git add													                                        	: Add a file to the staging 
+$ git add.													                                      	: Stage all the files from the directory
+$ git commit – m									                                     			: Commit all staged files to a local repo
+$ git commit – am									                                     			: Add all changes made to tracked files & commit
+$ git push											                                       			: Upload local repo into Remote repo
+$ git pull														                                      : Fetch the remote repo's Copy of the current branch, then merge 
+$ git status													                                      : List new or modified files not yet committed, check the state of work
+$ git log – online											                                  	: List commit history, with online 
+$ git branch <name>											                                  	: Create a new branch
+$ git checkout <branch>										                                	: Switch to a branch 
+$ git merge													                                       	: Used to merge the branches FB to master
+$ git rebase													                                      : Used to integrate changes from one branch onto another 
+$ git fetch														                                      : Updates your local repo with all of the latest changes from a remote 
+$ git stash														                                      : Temporarily save in the working directory
+$ git stash pop													                                    : Re-apply temporarily save work into staging 
+$ git cherry-pick											                                    	: re-committing from a branch to the target branch 
 
 
 
@@ -37,4 +37,4 @@ To resolve conflict:
 $ git config --global merge.tool vimdiff
 $ git config --global merge.conflictstyle diff3
 $ git config --global mergetool.prompt false
-$ git mergetool 												: vi editor to check the code and resolve it 
+$ git mergetool 												                                    : vi editor to check the code and resolve it 

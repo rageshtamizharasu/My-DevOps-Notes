@@ -1,0 +1,17 @@
+Email Configuration:
+
+Step 1 -- Start the Jenkins and login into the console
+
+Step 2 -- Click on Manage Jenkins --> Configure System --> Go down to see "E-mail Notification"
+
+Step 3 -- Configure the details
+		1. smtp.gmail.com
+		2. Click advanced and enable SMTP Authentication UserName/Password.
+		3. SMTP Port - 465 
+		4. Use SSL - Enable
+		5. Add test recipient email id too
+		6. Charset - UTF-8
+
+Note: Enable "Allow Less Secure App - ON" from your GMAIL ACCT
+
+Step 4 -- Test & Validate.

@@ -1,0 +1,165 @@
+Jenkins - 1 Reviews:
+---------------
+
+1. Challenges persisted in Traditional Integration method 
+CI and CD - No Automation
+Slowness, Resource idle, No frequent release, debugging - challenge
+
+2. What was the mechanism followed to eliminate Nokia Nightly build process?
+Continuous Integration - Jenkins
+
+3. Language used to developed Jenkins?
+Java
+
+4. What is meant by plug-ins? How many plug-ins there jenkins? What is the use for 
+   Project management?
+add-ons - addtional features
+2500
+Integration + Enable any features
+
+5. will it require to install Java as a pre-requisites before we install jenkins?
+   if yes, Why?
+Yes
+it is developed with Java
+
+6. What is the default Port number for Jenkins? Is this amendable? 
+   from which file system can find port number configuration?
+8080
+yes
+/etc/default - jenkins
+
+
+7. Is Jenkins an Daemon process? If yes, Specifcy the file system path?
+   also mention that what type of informations it may contains?
+Yes
+/etc/init.d
+
+
+8. Is there any command use to verify Jenkins running status?
+ps -ef | grep jenkins
+
+
+9. What is the command use to reboot Jenkins?
+service httpd restart
+service jenkins restart
+
+
+10. Will it possible to restart Jenkins in GUI?
+http://10.20.02.45:8080/restart
+
+
+11. What is the difference between Status and weather for particular job?
+success or failure - status
+weather - stablity
+
+12. Is "Remotely Triggering Job" method for the job runs an prefered process?
+No - 
+
+13. What is the neccessary to have a Master and Slave method to be implemented in the 
+    real-time project?
+master - act as a dc - controller for slaves
+
+
+14. What is the default Job landing path?
+/var/lib/jenkins/workspace
+
+
+15. mention the slaves customized job landing path?
+/home/ubuntu/jenkins
+
+
+16. What is the role of Master? 
+controller
+
+17. What is the role of Slave?
+Node
+
+
+18. Will it able to verify the logs of slave jobs from Master's console itself?
+Yes ---
+
+
+19. Will Slave machine require to be install the Jenkins tool? Justify.
+No...
+
+
+20. What is meant by Agent? How to enable the Agent connectivity between Master and Slaves?
+ubuntu - ssh localhost
+
+
+
+21. What is the Plug-ins type we are using to enhance master and slaves to our project?
+manage Node  and cloud - Feature enablement
+
+
+22. label name?  - calling 
+
+23. how frequently jenkins fetches the chnages from Version control system in amazon?
+8 secs
+
+
+
+
+
+Jenkins -2 Reviews:
+-------------------
+1. What are the Plug-ins we saw till now?
+Deploy to container
+Role based stratgey
+Delivery Pipeline  
+Build Pipeline
+Build Monitor View
+
+
+2. List the important directory in the apache tomcat?
+bin
+logs
+conf
+webapps
+
+
+3. What kind of task Jenkins as a continuous integration tool performs?
+Inte + dep
+
+4. What is default Port number for Tomcat? Is this amendable?
+8080
+Yes
+
+5. When the workspace will be created for one job and in which File system?
+job run
+/var/lib/jenkins/workspace/
+
+6. Difference between Delivery Pipeline and Build Pipeline?
+Manager
+Associate
+
+7. What is the main purpose to use on Build Monitor View?
+Particular job investigations
+
+8. How to restart jenkins from GUI?
+http://3.8.201.72:9090/restart
+
+9. What is the diff b/w CLI and GUI?
+execution speed
+
+10. What is the security policy available in the jenkins?
+user managed
+role-based authorization strategy
+
+11. How to retrieve the Password for the jenkins admin console?
+
+
+12. Why are we require to have a user management? 
+Restricted access
+
+13. How to retrieve password for Jenkins?
+
+14. How to check the version of the Jenkins via CLI without seeing in conf file and GUI?
+
+
+
+
+
+
+
+ 

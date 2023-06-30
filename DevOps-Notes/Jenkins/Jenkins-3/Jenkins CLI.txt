@@ -1,0 +1,22 @@
+
+
+Why u need CLI in Jenkins?
+
+- Easier to access
+- Faster when compared to GUI
+- Memory Management is Efficient
+- Continuous Integeration
+
+
+Step 1 - Start Jenkins - as like earlier.
+
+Step 2 - Goto Manage Jenkins --> Configure Global Security. Make sure the enable security is checked.
+
+Step 3 - Goto Manage Jenkins --> Choose Jenkins CLI [OR] 
+	http://<hostname>:8080/cli
+
+Step 4 - Download Jenkins-cli.jar and place it in the system
+
+Step 5 - Test the Jenkins CLI.
+	java -jar jenkins-cli.jar -s http://13.233.84.157:8080/ safe-restart --username jenkins --password xxx
+

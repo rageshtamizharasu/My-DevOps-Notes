@@ -1,0 +1,584 @@
+Step 1: Create and Lanuch Intance using AWS EC2 service 
+        Use puttygen to convert .pem to .ppk
+
+Step 2: Use putty to login using public ip as a session 
+        Amazon Linux user name is : ec2-user     
+
+
+
+login as: ec2-user
+Authenticating with public key "imported-openssh-key" from agent
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+15 package(s) needed for security, out of 31 available
+Run "sudo yum update" to apply all updates.
+
+
+
+Command 1: clear (Use to clear the terminal and start from the top of the terminal)
+---------------------------------------------------------------------------------
+[ec2-user@ip-172-31-12-26 ~]$ clear
+
+
+
+
+Command 2: pwd (Present working directory - it prints current file system path) 
+-------------------------------------------------------------------------------
+[ec2-user@ip-172-31-12-26 ~]$ pwd
+/home/ec2-user
+
+
+
+
+Command 3: date (it shows current date and time) 
+---------------------------------------------
+[ec2-user@ip-172-31-12-26 ~]$ date
+Mon Oct 14 04:56:05 UTC 2019
+
+
+
+
+Command 4: whoami (It tells about the user which we are using) 
+------------------------------------------------------------
+[ec2-user@ip-172-31-12-26 ~]$ whoami
+ec2-user
+
+
+
+
+
+Command 5: uname -a (It tells about the O/S of the instance we are using) 
+-----------------------------------------------------------------------
+[ec2-user@ip-172-31-12-26 ~]$ uname -a
+Linux ip-172-31-12-26.ap-south-1.compute.internal 4.14.138-114.102.amzn2.x86_64 #1 SMP Thu Aug 15 15:29:58 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+
+
+
+
+Command 6: hostname (It prints the hostname of the instance we are working with) 
+------------------------------------------------------------------------------
+[ec2-user@ip-172-31-12-26 ~]$ hostname
+ip-172-31-12-26.ap-south-1.compute.internal
+
+
+
+
+Command 7: du (Prints the disk usuage information) 
+------------------------------------------------
+[ec2-user@ip-172-31-12-26 ~]$ du
+4       ./.ssh
+16      .
+
+
+
+
+Command 8: df or df -h (It prints the disk file system information) 
+--------------------------------------------------------
+[ec2-user@ip-172-31-12-26 ~]$ df
+Filesystem     1K-blocks    Used Available Use% Mounted on
+devtmpfs          485636       0    485636   0% /dev
+tmpfs             503664       0    503664   0% /dev/shm
+tmpfs             503664     388    503276   1% /run
+tmpfs             503664       0    503664   0% /sys/fs/cgroup
+/dev/xvda1       8376300 1262380   7113920  16% /
+tmpfs             100736       0    100736   0% /run/user/1000
+
+
+
+
+
+Command 9: netstat -anlpt (It can list out the ports are opened and active in the instance) 
+-----------------------------------------------------------------------------------------
+
+In computing, netstat is a command-line network utility that displays network connections for Transmission Control Protocol, routing tables, 
+and a number of network interface and network protocol statistics
+
+
+
+[ec2-user@ip-172-31-12-26 ~]$ netstat -anlpt
+(No info could be read for "-p": geteuid()=1000 but you should be root.)
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      -
+tcp        0    528 172.31.12.26:22         106.197.168.135:58144   ESTABLISHED -
+tcp6       0      0 :::22                   :::*                    LISTEN      -
+tcp6       0      0 :::111                  :::*                    LISTEN      -
+
+
+
+
+
+
+Command 10: top (It tells detail about each jobs and process id with CPU and MEM utilization etc) 
+----------------------------------------------------------------------------------------------
+
+top command is used to show the Linux processes. It provides a dynamic real-time view of the running system. Usually, 
+this command shows the summary information of the system and the list of processes or threads which are currently managed by the Linux Kernel.
+
+
+
+
+
+[ec2-user@ip-172-31-12-26 ~]$ top
+top - 04:57:23 up 5 min,  1 user,  load average: 0.01, 0.12, 0.07
+Tasks:  85 total,   1 running,  46 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem :  1007332 total,   620660 free,    48020 used,   338652 buff/cache
+KiB Swap:        0 total,        0 free,        0 used.   806120 avail Mem
+
+  PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND
+    1 root      20   0  125564   5496   4064 S  0.0  0.5   0:01.30 systemd
+    2 root      20   0       0      0      0 S  0.0  0.0   0:00.00 kthreadd
+    4 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 kworker/0:0H
+    5 root      20   0       0      0      0 I  0.0  0.0   0:00.01 kworker/u30:0
+    6 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 mm_percpu_wq
+    7 root      20   0       0      0      0 S  0.0  0.0   0:00.03 ksoftirqd/0
+    8 root      20   0       0      0      0 I  0.0  0.0   0:00.16 rcu_sched
+    9 root      20   0       0      0      0 I  0.0  0.0   0:00.00 rcu_bh
+   10 root      rt   0       0      0      0 S  0.0  0.0   0:00.00 migration/0
+   11 root      rt   0       0      0      0 S  0.0  0.0   0:00.00 watchdog/0
+   12 root      20   0       0      0      0 S  0.0  0.0   0:00.00 cpuhp/0
+   13 root      20   0       0      0      0 S  0.0  0.0   0:00.00 kdevtmpfs
+   14 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 netns
+   15 root      20   0       0      0      0 I  0.0  0.0   0:00.02 kworker/u30:1
+   20 root      20   0       0      0      0 S  0.0  0.0   0:00.00 xenbus
+   21 root      20   0       0      0      0 S  0.0  0.0   0:00.01 xenwatch
+   22 root      20   0       0      0      0 I  0.0  0.0   0:00.06 kworker/0:1
+  171 root      20   0       0      0      0 S  0.0  0.0   0:00.00 khungtaskd
+  172 root      20   0       0      0      0 S  0.0  0.0   0:00.00 oom_reaper
+  173 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 writeback
+  175 root      20   0       0      0      0 S  0.0  0.0   0:00.00 kcompactd0
+  176 root      25   5       0      0      0 S  0.0  0.0   0:00.00 ksmd
+  177 root      39  19       0      0      0 S  0.0  0.0   0:00.00 khugepaged
+  178 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 crypto
+  179 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 kintegrityd
+
+
+
+
+
+
+Command 11: kill (Kill the unwanted process) 
+-----------------------------------------------------------------------------------
+The kill Command. The kill command is used on Linux and other Unix-like operating systems to terminate processes without having to log out or
+reboot (i.e., restart) the computer. Thus, it is particularly important to the stability of such systems
+
+
+[ec2-user@ip-172-31-12-26 ~]$ kill -9 pid
+[root@ip-172-31-12-26 ~]#
+
+
+
+
+Command 12: mkdir (This helps to make empty directory) 
+---------------------------------------------------
+[ec2-user@ip-172-31-12-26 ~]$ mkdir greens
+
+
+
+
+Command 13: ls (It lists the files and directories present in the current directory) 
+---------------------------------------------------------------------------------
+[ec2-user@ip-172-31-12-26 ~]$ ls
+greens
+
+
+
+
+Command 14: cd (This helps to change the terminal from present directory to other directory) 
+------------------------------------------------------------------------------------------
+[ec2-user@ip-172-31-12-26 ~]$ cd greens/
+
+
+
+
+Command 15: vi (vim file editor one way of helps to create the file) 
+-----------------------------------------------------------------
+[ec2-user@ip-172-31-12-26 greens]$ vi file1.txt
+
+Hi greens folks
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+          
+Note: 
+Press Esc and Alphabetic 'i' to enable to insert mode in Vi editor
+Once content inserted to save the same Press Esc and :wq!  (Means Saving and Quiting)
+If you dont want to save the file then just Press Esc and :q!  (Means we are not saving the file)
+
+//Cross check whether the file1.txt created or not using the ls command
+[ec2-user@ip-172-31-12-26 greens]$ ls
+file1.txt
+
+
+
+
+Command 16: cat (This helps to catch the content present in the file1.txt) 
+-----------------------------------------------------------------------
+[ec2-user@ip-172-31-12-26 greens]$ cat file1.txt
+Hi greens folks
+
+
+
+
+
+Command 17: ls -larth (in detail listing of the folders and files presenting inside the current working directory) 
+--------------------------------------------------------------------------------------------------------------
+[ec2-user@ip-172-31-12-26 greens]$ ls -larth
+total 4.0K
+-rw-rw-r-- 1 ec2-user ec2-user  14 Oct 14 05:10 file1.txt
+drwx------ 4 ec2-user ec2-user 102 Oct 14 05:10 ..
+drwxrwxr-x 2 ec2-user ec2-user  23 Oct 14 05:10 .
+
+ls - Listing folders and files
+     Files start with -
+v     Directories starts with d
+a  - It shows hidden files (Usually due to security purpose hidden files managed)
+r  - recursive
+t  - timestamp
+h  - Readble format of both files and directories (Means for example the file and folder size is on understandble format)
+
+
+
+
+
+Command 18: grep (This helps to just identify the compound matching and fetch those and display) 
+---------------------------------------------------------------------------------------------
+[ec2-user@ip-172-31-12-26 greens]$ ls -larth | grep file1
+-rw-rw-r-- 1 ec2-user ec2-user  14 Oct 14 05:10 file1.txt
+
+
+
+
+Command 19: touch (Another ways to create an empty file) 
+-----------------------------------------------------
+[ec2-user@ip-172-31-12-26 greens]$ touch file2
+
+//check whether the file2 created using ls -larth command
+[ec2-user@ip-172-31-12-26 greens]$ ls -larth
+total 4.0K
+-rw-rw-r-- 1 ec2-user ec2-user  14 Oct 14 05:10 file1.txt
+drwx------ 4 ec2-user ec2-user 102 Oct 14 05:10 ..
+-rw-rw-r-- 1 ec2-user ec2-user   0 Oct 14 05:14 file2
+drwxrwxr-x 2 ec2-user ec2-user  36 Oct 14 05:14 .
+
+//To insert the content into file2 below cat command can be used
+[ec2-user@ip-172-31-12-26 greens]$ cat >file2
+Hi
+Friends
+=AWS and DEVOPS
+
+to come out press ctrl+z
+
+//cross check now whether the content we have inserted is presenting in the file2 
+[ec2-user@ip-172-31-12-26 greens]$ cat file2
+Hi
+Friends
+AWS and DEVOPS
+
+
+
+
+
+Command 20: mkdir (This helps to create empty directory from present working directory) 
+-----------------------------------------------------------------------------------
+[ec2-user@ip-172-31-12-26 greens]$ mkdir awsdevops
+
+//cross check whether the directory awsdevops created under the path /home/ec2-user/greens
+[ec2-user@ip-172-31-12-26 greens]$ ls -larth
+total 8.0K
+-rw-rw-r-- 1 ec2-user ec2-user  14 Oct 14 05:10 file1.txt
+drwx------ 4 ec2-user ec2-user 102 Oct 14 05:10 ..
+-rw-rw-r-- 1 ec2-user ec2-user  26 Oct 14 05:15 file2
+drwxrwxr-x 2 ec2-user ec2-user   6 Oct 14 05:17 awsdevops
+drwxrwxr-x 3 ec2-user ec2-user  56 Oct 14 05:17 .
+
+
+
+
+
+Command 21: cd(This helps to just identify the compound matching and fetch those and display) 
+---------------------------------------------------------------------------------------------
+//change directory from /home/ec2-user/greens to /home/ec2-user/greens/awsdevops
+[ec2-user@ip-172-31-12-26 greens]$ cd awsdevops
+[ec2-user@ip-172-31-12-26 awsdevops]$
+
+# cd .. uses to navigate into previous directory
+[ec2-user@ip-172-31-12-26 awsdevops]$ cd ..
+[ec2-user@ip-172-31-12-26 greens]$
+
+# cd - uses to navigate into parent working directory
+[ec2-user@ip-172-31-12-26 awsdevops]$ cd -
+/home/ec2-user/greens
+[ec2-user@ip-172-31-12-26 greens]$
+
+
+
+
+Command 22: cp (This helps to copy the file from source to destination, file will exist in both source and destination post completion of the command execution) 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# in Linux . represents current working directory...example shown using . as below
+[ec2-user@ip-172-31-12-26 greens]$ cp file1.txt ./awsdevops/file1.txt
+
+# unlike using . i have specified complete path where we need to copy
+[ec2-user@ip-172-31-12-26 greens]$ cp file1.txt /home/ec2-user/greens/awsdevops/
+
+# Use cd and ls -larth and verify the files copied
+[ec2-user@ip-172-31-12-26 greens]$ cd awsdevops/
+[ec2-user@ip-172-31-12-26 awsdevops]$ ls -larth
+total 8.0K
+drwxrwxr-x 3 ec2-user ec2-user 56 Oct 14 05:17 ..
+-rw-rw-r-- 1 ec2-user ec2-user 14 Oct 14 05:20 file1.txt
+-rw-rw-r-- 1 ec2-user ec2-user 14 Oct 14 05:20 file5.txt
+drwxrwxr-x 2 ec2-user ec2-user 40 Oct 14 05:20 .
+
+
+
+
+
+Command 23: mv (This helps to move the file from source to destination, file will not exist in source post completion of the command execution) 
+--------------------------------------------------------------------------------------------------------------------------------------------
+[ec2-user@ip-172-31-12-26 greens]$ mv file1.txt  /home/ec2-user/greens/awsdevops/
+
+# file1.txt disapeared or deleted in the source
+[ec2-user@ip-172-31-12-26 greens]$ ls -larth
+total 4.0K
+drwx------ 4 ec2-user ec2-user 102 Oct 14 05:10 ..
+-rw-rw-r-- 1 ec2-user ec2-user  26 Oct 14 05:15 file2
+drwxrwxr-x 2 ec2-user ec2-user  40 Oct 14 05:26 awsdevops
+drwxrwxr-x 3 ec2-user ec2-user  39 Oct 14 05:26 .
+
+# Verfied in the destination the file1.txt presents
+[ec2-user@ip-172-31-12-26 greens]$ cd awsdevops/
+[ec2-user@ip-172-31-12-26 awsdevops]$ ls -larth
+total 8.0K
+-rw-rw-r-- 1 ec2-user ec2-user 14 Oct 14 05:10 file1.txt
+-rw-rw-r-- 1 ec2-user ec2-user 14 Oct 14 05:20 file5.txt
+drwxrwxr-x 3 ec2-user ec2-user 39 Oct 14 05:26 ..
+drwxrwxr-x 2 ec2-user ec2-user 40 Oct 14 05:26 .
+
+
+
+
+
+Command 24: rm (This helps to remove files recursively and forcefully from the current workinng directory) 
+-------------------------------------------------------------------------------------------------------
+[ec2-user@ip-172-31-12-26 awsdevops]$ rm -rf file5.txt
+[ec2-user@ip-172-31-12-26 awsdevops]$ ls -larth
+total 4.0K
+-rw-rw-r-- 1 ec2-user ec2-user 14 Oct 14 05:10 file1.txt
+drwxrwxr-x 3 ec2-user ec2-user 39 Oct 14 05:26 ..
+drwxrwxr-x 2 ec2-user ec2-user 23 Oct 14 05:29 .
+
+
+
+
+Command 25: chmod (Changing the permission of the files or directories) 
+--------------------------------------------------------------------
+# Default user doesn't have the priviledge to execute change mode command...It thrown an error lik this 
+[ec2-user@ip-172-31-12-26 awsdevops]$ chmod 777 file5.txt
+chmod: cannot access ‘file5.txt’: No such file or directory
+
+#Switching from default to root user to provide access rights
+[ec2-user@ip-172-31-12-26 awsdevops]$ sudo su -
+Last login: Mon Oct 14 04:58:52 UTC 2019 on pts/0
+
+# Providing read access to all default, root and other users on mentioned file system
+[root@ip-172-31-12-26 ~]# chmod 444 /home/ec2-user/greens/awsdevops/
+[root@ip-172-31-12-26 ~]# cd  /home/ec2-user/greens/awsdevops/
+
+[root@ip-172-31-12-26 greens]# ls -larth
+total 4.0K
+drwx------ 4 ec2-user ec2-user 102 Oct 14 05:10 ..
+-rw-rw-r-- 1 ec2-user ec2-user  26 Oct 14 05:15 file2
+drwxrwxr-x 3 ec2-user ec2-user  39 Oct 14 05:26 .
+dr--r--r-- 2 ec2-user ec2-user  23 Oct 14 05:29 awsdevops   # Read permission provided to all users dr--r--r--
+
+
+[root@ip-172-31-12-26 greens]# chmod 777 awsdevops
+[root@ip-172-31-12-26 greens]# ls -larth
+total 4.0K
+drwx------ 4 ec2-user ec2-user 102 Oct 14 05:10 ..
+-rw-rw-r-- 1 ec2-user ec2-user  26 Oct 14 05:15 file2
+drwxrwxr-x 3 ec2-user ec2-user  39 Oct 14 05:26 .
+drwxrwxrwx 2 ec2-user ec2-user  23 Oct 14 05:29 awsdevops   # rwx full permission provided to all users drwxrwxrwx
+
+
+Note:
+r = 4
+w = 2
+x = 1
+=====
+7 = Full access
+
+Users:
+default
+root
+others
+
+
+
+
+
+
+Command 26: useradd (Helps to create new user id) 
+--------------------------------------------------------------------
+[ec2-user@ip-172-31-12-26 ~]$ sudo su -
+Last login: Mon Oct 14 05:30:18 UTC 2019 on pts/0
+
+# Creating user
+[root@ip-172-31-12-26 ec2-user]# useradd usernew
+
+[root@ip-172-31-12-26 ec2-user]# vi /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+bin:x:1:1:bin:/bin:/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/sbin/nologin
+adm:x:3:4:adm:/var/adm:/sbin/nologin
+lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+sync:x:5:0:sync:/sbin:/bin/sync
+shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+halt:x:7:0:halt:/sbin:/sbin/halt
+mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
+operator:x:11:0:operator:/root:/sbin/nologin
+games:x:12:100:games:/usr/games:/sbin/nologin
+ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin
+nobody:x:99:99:Nobody:/:/sbin/nologin
+systemd-network:x:192:192:systemd Network Management:/:/sbin/nologin
+dbus:x:81:81:System message bus:/:/sbin/nologin
+rpc:x:32:32:Rpcbind Daemon:/var/lib/rpcbind:/sbin/nologin
+libstoragemgmt:x:999:997:daemon account for libstoragemgmt:/var/run/lsm:/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
+rpcuser:x:29:29:RPC Service User:/var/lib/nfs:/sbin/nologin
+nfsnobody:x:65534:65534:Anonymous NFS User:/var/lib/nfs:/sbin/nologin
+ec2-instance-connect:x:998:996::/home/ec2-instance-connect:/sbin/nologin
+postfix:x:89:89::/var/spool/postfix:/sbin/nologin
+chrony:x:997:995::/var/lib/chrony:/sbin/nologin
+tcpdump:x:72:72::/:/sbin/nologin
+ec2-user:x:1000:1000:EC2 Default User:/home/ec2-user:/bin/bash
+user1:x:1001:1001::/home/user1:/bin/bash
+usernew:x:1002:1002::/home/usernew:/bin/bash
+usermod -u 1000 usernew
+
+
+Esc :wq! 
+
+
+
+# Set the password for the user usernew
+[root@ip-172-31-12-26 ec2-user]# passwd usernew
+New password:
+Retype new password:
+passwd: all authentication tokens updated successfully.
+
+
+
+# Just to check the credential information use on the below command 
+[root@ip-172-31-12-26 ec2-user]# chage -l usernew
+Last password change                                    : Oct 14, 2019
+Password expires                                        : never
+Password inactive                                       : never
+Account expires                                         : never
+Minimum number of days between password change          : 0
+Maximum number of days between password change          : 99999
+Number of days of warning before password expires       : 7
+
+
+
+
+# Switch to newly created user
+[root@ip-172-31-12-26 ec2-user]# sudo su - usernew
+[usernew@ip-172-31-12-26 ~]$
+
+
+
+Command 27: fdisk  
+-----------------
+fdisk -l    # This shows any disk attached to the Instances
+
+
+
+Command 28: lsblk
+-----------------
+Displays news volumes and it's size.
+
+
+Command 29: mount
+-----------------
+1. Create an Linux Instance with one root device and Login and Switch to root user
+   Login with Default user: ec2-user 
+   Switch user to root [ec2-user@ip-172-31-4-189 ~]$ sudo su -
+
+2. Goto Elastic Block Store -  Volumes  -  Create an New Volume & Attach the same the Running Instance   # Ensure both Instance and Volume created on the same zones
+   example: both Volume and Instance should be in zone ap-sounth-1a then only Volume can attach the instance
+
+
+
+fdisk -l
+lsblk
+mkfs.ext4 /dev/xvdf
+mkdir /newvolume
+mount /dev/xvdf /newvolume
+umount /newvolume
+vi /etc/fstab
+/dev/xvdf /newvolume ext4 defaults,nofail 0       #include this one at end
+mount /newvolume
+df -h
+
+
+
+
+
+
+Command 30: su (switch user from one user to other user) 
+-----------------------------------------------------------------------------------
+Switch to root user:
+-------------------
+[ec2-user@ip-172-31-12-26 ~]$ sudo su - root
+[root@ip-172-31-12-26 ~]#
+
+Switch to default user from root:
+--------------------------------
+[root@ip-172-31-12-26 ~]# sudo su - ec2-user
+Last login: Mon Oct 14 04:55:39 UTC 2019 from 106.197.168.135 on pts/0
+
+
+
+
+
+Command 31: history (It displays the history of the unix commands we used in the server) 
+----------------------------------------------------------------------------------------
+[ec2-user@ip-172-31-12-26 ~]$ history
+

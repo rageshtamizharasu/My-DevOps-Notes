@@ -1,0 +1,109 @@
+sudo apt update
+
+sudo apt install openjdk-11-jre
+
+java -version
+
+curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee \
+  /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+
+
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+  https://pkg.jenkins.io/debian binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+
+sudo apt-get update
+
+sudo apt-get install jenkins
+
+
+---------------------------------------------------------------------------------
+
+Java and Jenkins Installation:
+==============================
+Link: https://qascript.com/setup-jenkins-on-aws-ec2-ubuntu-server/
+
+
+1. Update all software packages on Ubuntu server.
+sudo apt-get update
+sudo apt-get upgrade -y
+
+2. Install Java on Ubuntu server.
+sudo apt-get install default-jdk -y
+java -version
+
+3. Install Jenkins on Ubuntu server.
+wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+
+sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > \
+    /etc/apt/sources.list.d/jenkins.list'
+
+sudo apt-get update
+
+sudo apt-get install jenkins -y
+
+
+
+5) Verify:-
+(i) ps -ef | grep jenkins
+(ii) Jenkins will be launched as a daemon up on start - Check under /etc/init.d/jenkins
+(iii) /etc/default/jenkins will capture configuration parameters for the launch like e.g JENKINS_HOME.
+
+6) launch the Jenkins URLS in the browser:-
+<ubuntu_ip_address>:8080
+
+7) Get the Password from the path : /var/lib/jenkins/secrets/initialAdminPassword
+
+---------------------------------------------------------------------------------
+/etc/default# cat /var/lib/jenkins/secrets/initialAdminPassword
+6aba06880c534f85afba6be0085d2fd9
+root@ip-172-31-28-251:/etc/default#
+---------------------------------------------------------------------------------
+
+8) Click "Install Suggested Plugins" - Then the installation gets started.
+
+9) Create a new user of your own by giving Name, Email-id, username, password.
+
+10) Then Login into the console and explore Jenkins.
+
+---------------------------------------------------------------------------------
+
+node
+{
+    stage('Commit')
+    {
+        echo "This is Code Download from GIT Project Repository.................."
+    }
+    stage('Build')
+    {
+        echo "This is Build project using maven.................."
+    }
+    stage('Test')
+    {
+        echo "This is Test project Implementation using Selenium................."
+    }
+    stage('Release')
+    {
+        echo "This is Delivery using Docker......................................"
+    }
+}
+
+---------------------------------------------------------------------------------
+
+Email Configuration:
+
+Step 1 -- Start the Jenkins and login into the console
+
+Step 2 -- Click on Manage Jenkins --> Configure System --> Go down to see "E-mail Notification"
+
+Step 3 -- Configure the details
+		1. smtp.gmail.com
+		2. Click advanced and enable SMTP Authentication UserName/Password.
+		3. SMTP Port - 465 
+		4. Use SSL - Enable
+		5. Add test recipient email id too
+		6. Charset - UTF-8
+
+Note: Enable "Allow Less Secure App - ON" from your GMAIL ACCT
+
+Step 4 -- Test & Validate.

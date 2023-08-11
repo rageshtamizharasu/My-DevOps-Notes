@@ -1,18 +1,3 @@
-Automation Deployment:
-
-	It is a process of Automating the Deployment process in a Continuous Delivery System.
-
-
-Main Stages in Continuous Delivery & Deployment Pipelines:
-
-
-Build --> Deploy --> Test --> Release
-
-- These are Chained Processes, 
-- It means when the Build is success, then only Deploy will get started, 
-- Same like seeing the success of Deployment, the Testing happens. 
-- Also after every job, will have a notification, which tell us about its status
-
 This is called as "Continuous Integrated Sytem"
 
 

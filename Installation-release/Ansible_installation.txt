@@ -1,0 +1,38 @@
+Bootstrap in Ansible-Master
+====================
+
+#! /bin/bash
+yum update
+yum install python-pip -y
+pip install ansible
+
+
+
+vi slaves 
+
+wget https://raw.githubusercontent.com/ansible/ansible/stable-2.9/examples/ansible.cfg
+
+vi ansible.cfg
+
+ansible all -i slave -m ping   -----> To Check Master & Slave Connection 
+
+ansible all -i slave -a "uname -a"  ----> To check OS version
+
+ansible all -i slave -a "uptime" ----> To Check Running Time of an Instance
+
+State:
+	1. present/latest = install
+	2. absent = uninstall
+	3. started = start
+	4. stopped = stop
+	5. restarted = restart
+
+To install Apache in Slaves
+=====================
+
+ansible all -i slave -m yum -a "name=httpd state=present" -b   
+
+To Start Apache in Slaves
+==================== 
+
+ansible all -i slave -m service -a "name=httpd state=started" -b

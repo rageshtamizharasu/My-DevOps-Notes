@@ -1,0 +1,88 @@
+Prometheus-Master
+=================
+
+sudo -i
+apt-get update -y
+apt-get upgrade -y
+cd /opt
+wget https://github.com/prometheus/prometheus/releases/download/v2.37.8/prometheus-2.37.8.linux-amd64.tar.gz
+tar -xvzf prometheus-2.37.8.linux-amd64.tar.gz
+cd prom....
+cp prometheus /usr/local/bin/
+cp promtool /usr/local/bin/
+./prometheus --config.file=prometheus.yml &
+
+
+
+Port number of Prometheus--->9090
+
+
+
+Node Exporter
+=============
+
+sudo -i
+apt-get update -y
+apt-get upgrade -y
+cd /opt
+wget https://github.com/prometheus/node_exporter/releases/download/v1.5.0/node_exporter-1.5.0.linux-amd64.tar.gz
+tar -xvzf node_exporter-1.5.0.linux-amd64.tar.gz
+cd node_exporter .........
+./node_exporter &
+
+
+Port number of Node_Exporter-->9100
+
+
+Prometheus-Master
+=================
+
+
+vi prometheus.yml
+
+
+   - job_name: 'Node_Exporter'
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+    - targets: ['slave ip:9100']
+
+esc:wq!
+
+
+
+ps -ef | grep prometheus
+kill -9 Process id of Prometheus.yml
+./prometheus --config.file=prometheus.yml &
+
+
+
+Grafana installation From Master
+================================
+
+cd /opt
+wget https://dl.grafana.com/oss/release/grafana-9.5.1.linux-amd64.tar.gz
+tar -zxvf grafana-9.5.1.linux-amd64.tar.gz
+cd grafana.....
+cd bin
+./grafana-server &
+
+
+Port number of Grafana---> 3000
+
+
+Grafana Dashboard
+9894
+14731
+1860
+
+
+
+
+
+
+
+
+

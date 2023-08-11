@@ -1,6 +1,15 @@
+Git - operations & commands(Basic)
+----------------------------------
+  
+#sudo su -
+#yum insall git -y
+
+#mkdir <dirname>
+#cd <dirname>
+
 
 Setup for the project: 
-
+-------------------------------------------------------------------------------------------------------------------------------------
 $ git init 								: Create a local repo to initialise the current directory as a repo 
 $ git config --global user.name "Ragesh" 				: user name 
 $ git config --global user. email "Ragesh@yourcloud.com” 		: user e-mail

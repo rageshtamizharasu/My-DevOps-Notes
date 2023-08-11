@@ -2,7 +2,7 @@ Project: Web Application Deployment with AWS and DevOps Tools
 
 Document Information:
 - Document Title: Web Application Deployment with AWS and DevOps Tools
-- Version: 1.0
+- Version: 1.2
 - Date: 11-08-2023
 - Author: Ragesh
 - Last Updated: 11-08-2023
@@ -19,6 +19,7 @@ Document Information:
 
 3. **Infrastructure Setup**
    - AWS services used: Amazon EC2, Amazon RDS Engine (MySQL),IAM,VPC,ELB,ASG,S3,Route 53
+   - AWS Systems Manager Automation to perform the actual backup 
    - Terraform for IaC: Describe the infrastructure components defined in Terraform (VPC, subnets, security groups).
    
 4. **Source Code Management**

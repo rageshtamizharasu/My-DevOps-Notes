@@ -1,0 +1,26 @@
+version: '3'
+services:
+  web-app:
+    image: your-web-app-image
+    ports:
+      - "80:80"
+    environment:
+      DB_HOST: your-rds-endpoint
+      DB_USER: db-username
+      DB_PASSWORD: db-password
+      DB_NAME: db-name
+
+volumes:
+  db-data:
+------------------------------------------
+lease note that this example assumes you have already built a Docker image for your web application and 
+that your application code uses environment variables like DB_HOST, DB_USER, DB_PASSWORD, and DB_NAME to connect 
+to the RDS instance.
+
+Here's a high-level overview of the steps you would need to follow:
+1.Create an EC2 Instance:
+2.Set Up an Amazon RDS Instance:
+3.Build and Push Your Docker Image:
+4.SSH into EC2 Instance Docker and Docker Compose on the EC2 instance
+5.Deploy the Application docker compose -f <filename> up
+6.Access the Application  EC2 instance's public IP 

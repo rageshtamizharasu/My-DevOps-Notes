@@ -1,4 +1,7 @@
 FROM ubuntu:latest
+LABEL AUTHOR=ragesh \
+      VERSION=0.1 \
+      EMAIL=ragesh@github.com
 
 ENV SPLUNK_HOME=/opt/splunkforwarder
 ENV SPLUNK_START_ARGS="--accept-license"

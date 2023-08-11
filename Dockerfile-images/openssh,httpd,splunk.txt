@@ -1,0 +1,27 @@
+# Use a base image
+FROM ubuntu:latest
+
+# Install necessary packages
+RUN apt-get update && \
+    apt-get install -y openssh-server apache2 wget
+
+# Install and configure Splunk Universal Forwarder
+RUN wget -O splunkforwarder.tgz 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=latest&product=universalforwarder&filename=splunkforwarder-latest-Linux-x86_64.tgz'
+RUN tar xvzf splunkforwarder.tgz -C /opt
+RUN rm splunkforwarder.tgz
+RUN /opt/splunkforwarder/bin/splunk start --accept-license
+RUN /opt/splunkforwarder/bin/splunk enable boot-start
+
+# Setup SSH
+RUN mkdir -p /var/run/sshd
+RUN echo 'root:your_password' | chpasswd
+RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
+
+# Expose SSH, HTTP, and Splunk ports
+EXPOSE 22
+EXPOSE 80
+EXPOSE 8089
+
+# Start SSH, HTTP, and Splunk services
+CMD service ssh start && /usr/sbin/apache2ctl -D FOREGROUND && /opt/splunkforwarder/bin/splunk start

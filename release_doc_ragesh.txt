@@ -1,6 +1,6 @@
-##Project: Web Application Deployment with AWS and DevOps Tools
+Project: Web Application Deployment with AWS and DevOps Tools
 
-###Document Information:
+Document Information:
 - Document Title: Web Application Deployment with AWS and DevOps Tools
 - Version: 1.0
 - Date: 11-08-2023
@@ -18,51 +18,70 @@
    - Overview of the DevOps process and tools used.
 
 3. **Infrastructure Setup**
-   - AWS services used: Amazon EC2, Amazon RDS (MySQL)
+   - AWS services used: Amazon EC2, Amazon RDS Engine (MySQL),IAM,VPC,ELB,ASG,S3,Route 53
    - Terraform for IaC: Describe the infrastructure components defined in Terraform (VPC, subnets, security groups).
    
 4. **Source Code Management**
    - Git repository hosted on GitHub.
+   - https://github.com/rageshtamizharasu
    - Branching strategy: GitFlow.
-   - Tags for release versions.
+   - Tags for release versions 1.0 or 1.*
 
 5. **Continuous Integration**
    - Jenkins for CI/CD: Describe Jenkins job configuration for building, testing, and packaging the application.
-   - Integration with GitHub hooks for automated builds.
+   - Integration with GitHub hooks for automated builds Jenkinsfile.
+   - Make sure to check the plugins
+   
+   node {
+    stage('Checkout') {
+        // Checkout the source code from your version control system (e.g., Git)
+        checkout scm
+    }
 
 6. **Build and Packaging**
    - Maven for building Java-based application.
    - Describe the build process and Maven configuration.
+   - mvn clean package
 
 7. **Automated Testing**
    - Unit testing using JUnit and integration testing using Selenium.
+   - using sonarQube 
    - Describe test suites and their integration into the CI/CD pipeline.
 
 8. **Dockerization**
    - Dockerize the application for containerization.
    - Dockerfile and any necessary configuration files.
+   - docker build -t myapplication /home/project/Dockerfile 
 
 9. **Continuous Deployment**
    - AWS CodeDeploy for deployment automation.
-   - Blue-green deployment strategy.
+   - Blue-green deployment strategy. v1 to v2
    - CodeDeploy hooks for pre and post-deployment actions.
+  
 
 10. **Infrastructure as Code (IaC)**
     - Terraform for defining and managing infrastructure.
     - Explain Terraform configurations and modules for EC2 instances, RDS, etc.
+	- terraform init , plan , apply
 
 11. **Configuration Management**
     - Ansible for configuring EC2 instances.
     - Playbooks for installing dependencies and application setup.
+	- ansible-playbook -i inventory my_playbook.yml
 
 12. **Monitoring and Alerting**
     - AWS CloudWatch for monitoring resources and application metrics.
     - Prometheus and Grafana for advanced monitoring and visualization.
+	-./node_exporter & Port number of Node_Exporter-->9100
     - Define metrics, alerts, and dashboards.
 
 13. **Log Management**
     - Splunk for log aggregation and analysis.
     - Explain how application logs are collected and forwarded to Splunk.
+	-./splunk start --accept-license
+	-./splunk add forward-server publicip:9997
+	-./splunk add monitor /var/log/syslog -index main -sourcetype slave1logs  - example
+	
 
 14. **Security and Compliance**
     - IAM roles for EC2 instances with least privilege.
@@ -75,6 +94,7 @@
 
 16. **Rollback Strategy**
     - Detail the process of rolling back a release in case of issues.
+	- Backup: Before deploying any changes, take backups of databases, configurations, and relevant data. This provides a recovery point in case of issues.
     - Steps for reverting code, database changes, and infrastructure.
 
 17. **Conclusion**

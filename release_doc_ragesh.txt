@@ -1,0 +1,87 @@
+##Project: Web Application Deployment with AWS and DevOps Tools
+
+###Document Information:
+- Document Title: Web Application Deployment with AWS and DevOps Tools
+- Version: 1.0
+- Date: 11-08-2023
+- Author: Ragesh
+- Last Updated: 11-08-2023
+
+**Table of Contents**:
+1. Introduction
+   - Purpose of the Document
+   - Scope and Applicability
+   - Document Overview
+
+2. **Project Overview**
+   - Description of the web application to be deployed.
+   - Overview of the DevOps process and tools used.
+
+3. **Infrastructure Setup**
+   - AWS services used: Amazon EC2, Amazon RDS (MySQL)
+   - Terraform for IaC: Describe the infrastructure components defined in Terraform (VPC, subnets, security groups).
+   
+4. **Source Code Management**
+   - Git repository hosted on GitHub.
+   - Branching strategy: GitFlow.
+   - Tags for release versions.
+
+5. **Continuous Integration**
+   - Jenkins for CI/CD: Describe Jenkins job configuration for building, testing, and packaging the application.
+   - Integration with GitHub hooks for automated builds.
+
+6. **Build and Packaging**
+   - Maven for building Java-based application.
+   - Describe the build process and Maven configuration.
+
+7. **Automated Testing**
+   - Unit testing using JUnit and integration testing using Selenium.
+   - Describe test suites and their integration into the CI/CD pipeline.
+
+8. **Dockerization**
+   - Dockerize the application for containerization.
+   - Dockerfile and any necessary configuration files.
+
+9. **Continuous Deployment**
+   - AWS CodeDeploy for deployment automation.
+   - Blue-green deployment strategy.
+   - CodeDeploy hooks for pre and post-deployment actions.
+
+10. **Infrastructure as Code (IaC)**
+    - Terraform for defining and managing infrastructure.
+    - Explain Terraform configurations and modules for EC2 instances, RDS, etc.
+
+11. **Configuration Management**
+    - Ansible for configuring EC2 instances.
+    - Playbooks for installing dependencies and application setup.
+
+12. **Monitoring and Alerting**
+    - AWS CloudWatch for monitoring resources and application metrics.
+    - Prometheus and Grafana for advanced monitoring and visualization.
+    - Define metrics, alerts, and dashboards.
+
+13. **Log Management**
+    - Splunk for log aggregation and analysis.
+    - Explain how application logs are collected and forwarded to Splunk.
+
+14. **Security and Compliance**
+    - IAM roles for EC2 instances with least privilege.
+    - Encryption at rest and in transit.
+    - Compliance considerations and their implementation.
+
+15. **Release Process**
+    - Document the complete release process from code commit to production deployment.
+    - Include integration points and communication channels.
+
+16. **Rollback Strategy**
+    - Detail the process of rolling back a release in case of issues.
+    - Steps for reverting code, database changes, and infrastructure.
+
+17. **Conclusion**
+    - Summarize the key points of the document.
+    - Emphasize the benefits of using AWS services and DevOps tools.
+
+18. **Appendices**
+    - Include diagrams, sample code snippets, and references.
+
+This project aims to provide a comprehensive example of integrating various AWS services and DevOps tools into a real-world application deployment process.

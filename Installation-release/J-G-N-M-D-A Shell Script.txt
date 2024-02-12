@@ -1,0 +1,85 @@
+#!/bin/bash
+
+# Jenkins
+echo "Installing default-jdk for Jenkins..."
+sudo apt update -y
+sudo apt install default-jdk -y
+
+echo "Adding Jenkins GPG key and repository..."
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+  https://pkg.jenkins.io/debian-stable binary/" | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt-get update -y
+sudo apt-get install jenkins -y
+sudo systemctl start jenkins
+
+
+# Git
+sudo apt install git -y
+git --version
+
+# Maven
+sudo apt install maven -y
+mvn -version
+
+# Npm
+sudo apt install nodejs -y
+sudo apt install npm -y
+
+
+# Docker
+sudo apt install docker.io -y
+
+sudo chmod 777 /var/run/docker.sock
+sudo systemctl enable docker
+sudo systemctl start docker
+docker -v
+
+# Ansible
+sudo apt install ansible -y
+ansible --version
+
+# AWS
+sudo apt update -y
+sudo apt install -y curl unzip python3
+sudo curl "https://d1vvhvl2y92vvt.cloudfront.net/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+
+unzip awscliv2.zip
+sudo ./aws/install
+sudo rm -rf aws awscliv2.zip
+sudo chmod +x install_aws_cli.sh
+sudo ./install_aws_cli.sh
+
+
+
+# kubectl
+sudo curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo mv /home/ubuntu/file/kubectl /usr/local/bin/
+sudo chmod +x /usr/local/bin/kubectl
+kubectl version --client
+
+# Install Kops
+sudo curl -Lo kops https://github.com/kubernetes/kops/releases/download/$(curl -s sudo https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64
+
+sudo chmod +x ./kops
+
+sudo mv ./kops /usr/local/bin/
+
+# Export AWS Access Keys
+
+sudo aws configure set aws_access_key_id AKIA3P6IJYISIKA4HDVP
+sudo aws configure set aws_secret_access_key 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
+sudo aws configure set default.region ap-south-1
+sudo aws configure set output json
+sudo ssh-keygen
+
+export AWS_ACCESS_KEY_ID=$AKIA3P6IJYISIKA4HDVP
+export AWS_SECRET_ACCESS_KEY=$vZ9NfAZxa2KpQrofEx9WqBWAfwjHjSuxD6jqLetN
+export NAME=human.k8s.local
+export KOPS_STATE_STORE=s3://mytestingfornothing
+export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id)
+
+kops create cluster --zones us-east-1 ${NAME}
+

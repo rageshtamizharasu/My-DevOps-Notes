@@ -1,0 +1,119 @@
+Ansible-linux
+==============
+
+sudo yum install python-pip -y
+sudo yum install ansible
+sudo amazon-linux-extras install ansible2
+pip install pywinrm
+cd /etc/ansible
+cp hosts /home/ec2-user/
+cp ansible.cfg /home/ec2-user/
+cd /home/ec2-user/
+ls
+vi ansible.cfg
+vi hosts
+
+
+Ansible-Ubuntu
+==============
+
+sudo apt-get update
+sudo apt-get install ansible -y
+ansible --version
+
+Note : make sure python is been installed 
+==============
+
+
+
+
+
+
+
+
+
+
+
+
+[windows]
+172.31.8.27
+
+[windows:vars]
+ansible_user=Administrator
+ansible_password=Admin123 
+ansible_port=5986
+ansible_connection=winrm
+ansible_winrm_server_cert_validation=ignore
+
+esc:wq!
+
+
+Go to Windows Server
+
+go to search----> lusrmgr.msc
+ 
+click local---> right click Administrator---> change password--Admin123
+
+Re-Launch windows server
+
+Username --> Administrator
+password --> Admin123
+
+Now open Powershell ISE
+
+https://github.com/AlbanAndrieu/ansible-windows/blob/master/files/ConfigureRemotingForAnsible.ps1
+
+
+From Ansible Master
+====================
+
+ansible windows -i hosts -m win_ping
+
+vi folder.yml
+
+
+- hosts: windows
+  gather_facts: true
+  tasks:
+  - name: Create a folder in target group node
+    win_file:
+      path: C:\ansible
+      state: directory
+
+esc :wq!
+
+ansible-playbook -i hosts folder.yml
+
+
+------------------------------------------------------------------
+
+
+
+vi iis.yml
+
+
+---
+# This playbook installs and enables IIS on Windows hosts
+
+- name: Install IIS
+  hosts: windows
+  gather_facts: false
+  tasks:
+    - name: Install IIS
+      win_feature:
+        name: "Web-Server"
+        state: present
+        restart: yes
+        include_sub_features: yes
+        include_management_tools: yes
+
+
+esc :wq!
+
+ansible-playbook -i hosts iis.yml
+
+-------------------------------------------------------------------
+
+
+
+

@@ -1,0 +1,66 @@
+
+SPLUNK - MASTER
+===============
+
+sudo -i
+apt-get update 
+apt-get upgrade -y
+cd /opt
+wget -O splunk-9.0.2-17e00c557dc1-Linux-x86_64.tgz "https://download.splunk.com/products/splunk/releases/9.0.2/linux/splunk-9.0.2-17e00c557dc1-Linux-x86_64.tgz"
+tar -xvzf spunk.......
+cd splunk
+cd bin
+./splunk start --accept-license
+
+To login Splunk Console---> Master IP:8000 [ Example-13.41.205.157:8000]
+
+SPLUNK - FORWARDER
+==================
+sudo -i
+apt-get update -y
+apt-get upgrade -y
+cd /opt
+wget -O splunkforwarder-9.0.2-17e00c557dc1-Linux-x86_64.tgz "https://download.splunk.com/products/universalforwarder/releases/9.0.2/linux/splunkforwarder-9.0.2-17e00c557dc1-Linux-x86_64.tgz"
+tar -xvzf splunkfro.......
+cd splunkforwarder
+cd bin
+./splunk start --accept-license
+
+./splunk add forward-server 52.56.211.157:9997
+
+Now Copy log file from local-system to slave through Winscp
+
+cd /var/log
+cp /home/ubuntu/syslog . 
+cd /opt/splunkforwarder/bin
+./splunk add monitor /var/log/syslog -index main -sourcetype slave1logs
+
+
+----------------------------------------------------------------------------------------------------------
+
+FROM SPLUNK-MASTER
+==================
+
+./splunk enable listen 9997
+
+
+
+NOTE: IF ERROR OCCURS ---> Do Following Steps in SPLUNK-MASTER
+---------------------------------
+
+cd /opt/splunk/etc/system/local
+
+vi server.conf
+
+# disk usage processor settings
+[diskUsage]
+minFreeSpace = 50
+pollingFrequency = 100000
+pollingTimerFrequency = 10
+
+esc
+:wq!
+
+cd /opt/splunk/bin
+./splunk restart
+

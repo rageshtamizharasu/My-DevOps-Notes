@@ -1,0 +1,55 @@
+**Java and Jenkins Installation on Ubuntu Server**
+
+### Step 1: Update Software Packages
+-------------------------------------------
+
+sudo apt-get update
+sudo apt-get upgrade -y
+
+-------------------------------------------
+
+### Step 2: Install Java
+
+-------------------------------------------
+
+sudo apt-get install default-jdk -y
+java -version
+
+-------------------------------------------
+
+### Step 3: Install Jenkins
+
+-------------------------------------------
+
+wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+
+sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > \
+    /etc/apt/sources.list.d/jenkins.list'
+
+sudo apt-get update
+
+sudo apt-get install jenkins -y
+
+-------------------------------------------
+
+### Step 4: Verify Jenkins Installation
+
+-------------------------------------------
+
+ps -ef | grep jenkins
+
+ls /etc/init.d/jenkins
+
+cat /etc/default/jenkins
+
+-------------------------------------------
+
+### Step 5: Launch Jenkins
+
+<ubuntu_ip_address>:8080
+
+-------------------------------------------
+
+### Step 6: Get Jenkins Admin Password
+
+cat /var/lib/jenkins/secrets/initialAdminPassword

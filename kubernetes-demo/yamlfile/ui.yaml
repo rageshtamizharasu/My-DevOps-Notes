@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "react-ui"
+  namespace: ms
+  labels:
+    app: "react-ui"
+spec:
+  selector:
+    matchLabels:
+      app: "react-ui"
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: "react-ui"
+    spec:
+      containers:
+      - name: "react-ui"
+        image:  naresh2603/ui:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          name: "react-ui"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "react-ui"
+  namespace: ms
+spec:
+  selector:
+    app: "react-ui"
+  type: NodePort
+  ports:
+  - name: "react-ui"
+    port: 8081
+    targetPort: 8080

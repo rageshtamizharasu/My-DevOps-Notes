@@ -1,0 +1,47 @@
+Docker installation 
+=======================
+
+Docker install on Linux
+------------------------------
+
+yum search docker
+
+yum info docker
+
+yum install docker
+
+systemctl enable docker.service
+
+systemctl start docker.service
+
+
+Docker install on Ubuntu
+--------------------------------
+
+apt update
+
+apt install docker.io -y
+
+
+Note : chmod 777 /var/run/docker.sock for jenkins CI 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
